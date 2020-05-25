@@ -4,7 +4,10 @@ using System.Linq;
 namespace TestConsole.Models
 {
     public class Packet
-    { 
+    {
+        private const int minValidCode = 32;
+        private const int maxValidCode = 127;
+
         private Payload _payload;
 
         public Payload Payload { get => _payload; }
@@ -20,10 +23,7 @@ namespace TestConsole.Models
 
         public bool ContainsValidChars(string str)
         {
-            int min = 32;
-            int max = 127;
-
-            return str.All(c => min <= c && c <= max);
+            return str.All(c => minValidCode <= c && c <= maxValidCode);
         }
     }
 }
